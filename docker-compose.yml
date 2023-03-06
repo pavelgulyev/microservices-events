@@ -4,10 +4,10 @@ services:
   #service 1: mysql database image creation
   db:
     image: mysql
-    container_name: mysqlforapp
+    container_name: appdb
     environment:
       - MYSQL_ROOT_PASSWORD=spring
-      - MYSQL_DATABASE=mydb
+      - MYSQL_DATABASE=shedule
     ports:
       - "3306:3306"
 #    restart: always
@@ -23,15 +23,15 @@ services:
       ports:
         - "8080:8080"
       depends_on:
-        - mysqldb
+        - db
       networks:
         - lotus
       environment:
-        - APP_MYSQL_DATASOURCE_URL=jdbc:mysql://mysqlforapp:3306/mydb
-        - APP_MYSQL_USERNAME=user
-        - APP_MYSQL_PASSWORD=1234
+        - APP_MYSQL_DATASOURCE_URL=jdbc:db://appdb:3306/shedule
+        - APP_MYSQL_USERNAME=root
+        - APP_MYSQL_PASSWORD=spring
       restart: on-failure
 
-  networks:
-      lotus:
-        name: lotus
+networks:
+  lotus:
+      name: lotus
