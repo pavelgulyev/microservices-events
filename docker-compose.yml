@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  #service 1: mysql database image creation
+  db:
+    image: mysql
+    container_name: mysqlforapp
+    environment:
+      - MYSQL_ROOT_PASSWORD=spring
+    ports:
+      - "3306:3306"
+    restart: always
