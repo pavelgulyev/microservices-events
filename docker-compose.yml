@@ -7,6 +7,31 @@ services:
     container_name: mysqlforapp
     environment:
       - MYSQL_ROOT_PASSWORD=spring
+      - MYSQL_DATABASE=mydb
     ports:
       - "3306:3306"
-    restart: always
+#    restart: always
+    networks:
+      - lotus
+    restart: on-failure
+  web-app:
+      container_name: springboot-web
+      image: springboot-web
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      depends_on:
+        - mysqldb
+      networks:
+        - lotus
+      environment:
+        - APP_MYSQL_DATASOURCE_URL=jdbc:mysql://mysqlforapp:3306/mydb
+        - APP_MYSQL_USERNAME=user
+        - APP_MYSQL_PASSWORD=1234
+      restart: on-failure
+
+  networks:
+      lotus:
+        name: lotus
