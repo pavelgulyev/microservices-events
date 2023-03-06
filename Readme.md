@@ -94,8 +94,8 @@ CRUD APIs для Пользователя
     DELETE /webshedule/user/{id}
 CRUD APIs для Мероприятий
 
-    GET    /webshedule/faculties
-    POST   /webshedule/faculty
-    GET    /webshedule/faculty/{id}
-    PUT    /webshedule/faculty/{id}
-    DELETE /webshedule/faculty/{id}
+    GET    /webshedule/events
+    POST   /webshedule/event
+    GET    /webshedule/event/{id}
+    PUT    /webshedule/event/{id}
+    DELETE /webshedule/event/{id}
