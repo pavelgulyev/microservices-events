@@ -1,20 +1,6 @@
 package com.example.serviceshedule.service;
 
-import com.example.serviceshedule.dto.DateEventDto;
-import com.example.serviceshedule.dto.UserScheduleDto;
-import com.example.serviceshedule.entity.DateEvent;
-
-import com.example.serviceshedule.entity.UserSсhedule;
-import com.example.serviceshedule.repository.DateEventRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Service
 public class DateEventService {

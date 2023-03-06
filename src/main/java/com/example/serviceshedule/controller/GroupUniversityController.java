@@ -40,7 +40,7 @@ public class GroupUniversityController {
         groupUniversity findFaculty = groupUniversityService.getGroupUniversityById(id);
         return mappingResponseFaculty(findFaculty);
     }
-    @GetMapping("/group/faculty/{id}")
+    @GetMapping("/groups/faculty/{id}")
     public ResponseEntity<List<groupUniversity>> findByFacultyId(@PathVariable Long id) {
         //groupUniversity findFaculty = facultyService.readByCategoryId(id);
         return mappingResponseListFaculty(groupUniversityService.readByCategoryId(id));

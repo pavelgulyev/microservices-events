@@ -15,10 +15,10 @@ import java.util.List;
 public class FacultyController {
     @Autowired
     private FacultyService facultyService;
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello ";
-    }
+//    @GetMapping("/hello")
+//    public String sayHello() {
+//        return "Hello ";
+//    }
     @PostMapping("/faculty")
     public ResponseEntity<Faculty> create(@RequestBody Faculty dto) {
         return mappingResponseFaculty(facultyService.createFaculty(dto));

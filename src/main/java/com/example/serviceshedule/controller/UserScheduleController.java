@@ -40,7 +40,7 @@ public class UserScheduleController {
         UserSсhedule findFaculty = groupUniversityService.getUserScheduleById(id);
         return mappingResponseFaculty(findFaculty);
     }
-    @GetMapping("/user/role/{id}")
+    @GetMapping("/users/role/{id}")
     public ResponseEntity<List<UserSсhedule>> findByFacultyId(@PathVariable Long id) {
         //groupUniversity findFaculty = facultyService.readByCategoryId(id);
         return mappingResponseListFaculty(groupUniversityService.getByRoleId(id));

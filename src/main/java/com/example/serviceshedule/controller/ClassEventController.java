@@ -18,7 +18,7 @@ public class ClassEventController {
     public ResponseEntity<ClassEvent> create(@RequestBody ClassEvent dto) {
         return mappingResponseCategory(classEventServiceService.createFaculty(dto));
     }
-    @GetMapping("/classevents")
+    @GetMapping("/classesevent")
     public ResponseEntity<List<ClassEvent>> readAll() {
         return mappingResponseListCategory(classEventServiceService.readAll());
     }
