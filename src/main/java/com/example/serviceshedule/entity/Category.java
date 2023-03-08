@@ -1,5 +1,6 @@
 package com.example.serviceshedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,9 @@ public class Category {
             strategy = GenerationType.SEQUENCE,
             generator = "category_sequence"
     )
+    @JsonProperty("category_id")
     private Long CategoryId;
     @Column(name = "namecategory")
+    @JsonProperty("name_category")
     private String nameCategory;
 }

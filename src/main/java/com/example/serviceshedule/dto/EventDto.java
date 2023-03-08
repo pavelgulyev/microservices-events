@@ -3,17 +3,20 @@ package com.example.serviceshedule.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+@NoArgsConstructor
 @Data
-public class EventDto {
+public class EventDto implements Serializable {
     @JsonProperty("name")
     private String nameEvent;
     @JsonProperty("description")
     private String descriptionEvent;
     @JsonProperty("datestart")
-    private final String dateStartEvent;
+    private String dateStartEvent;
     @JsonProperty("dateend")
-    private final String dateEndEvent;
+    private String dateEndEvent;
     @JsonProperty("classevent_id")
     private Long classEventid;
     @JsonProperty("typeevent_id")
@@ -24,4 +27,6 @@ public class EventDto {
     private Long groupUniversity;
     @JsonProperty("faculty_id")
     private Long faculty;
+    @JsonProperty("category_id")
+    private Long category;
 }

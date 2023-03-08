@@ -1,9 +1,9 @@
 package com.example.serviceshedule.controller;
 
-//import com.example.serviceshedule.entity.Faculty;
-import com.example.serviceshedule.dto.UserScheduleDto;
-import com.example.serviceshedule.entity.UserSсhedule;
-import com.example.serviceshedule.service.UserScheduleService;
+
+import com.example.serviceshedule.dto.EventDto;
+import com.example.serviceshedule.entity.Event;
+import com.example.serviceshedule.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,49 +15,54 @@ import java.util.List;
 @RequestMapping("/webshedule")
 public class EventController {
     @Autowired
-    private UserScheduleService groupUniversityService;
+    private EventService service;
     @PostMapping("/event")
-    public ResponseEntity<UserSсhedule> create(@RequestBody UserScheduleDto dto) {
+    public ResponseEntity<Event> create(@RequestBody EventDto dto) {
         //facultyService.create(dto);
-        return mappingResponseFaculty(groupUniversityService.createFromDTO(dto));
+        return mappingResponseFaculty(service.createFromDTO(dto));
     }
     @DeleteMapping("/event/{id}")
     public HttpStatus delete(@PathVariable Long id) {
-        groupUniversityService.delete(id);
+        service.delete(id);
         return HttpStatus.OK;
     }
     @GetMapping("/events")
-    public ResponseEntity<List<UserSсhedule>> readAll() {
-        return mappingResponseListFaculty(groupUniversityService.readAll());
+    public ResponseEntity<List<Event>> readAll() {
+        return mappingResponseListFaculty(service.readAll());
     }
-    @GetMapping("/eventto")
-    public ResponseEntity<UserScheduleDto> readGroupUniversityDto() {
-        UserScheduleDto dto = new UserScheduleDto();
+    @GetMapping("/evendto")
+    public ResponseEntity<EventDto> readGroupUniversityDto() {
+        EventDto dto = new EventDto();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
     @GetMapping("/event/{id}")
-    public ResponseEntity<UserSсhedule> findById(@PathVariable Long id) {
-        UserSсhedule findFaculty = groupUniversityService.getUserScheduleById(id);
+    public ResponseEntity<Event> findById(@PathVariable Long id) {
+        Event findFaculty = service.getEventById(id);
         return mappingResponseFaculty(findFaculty);
     }
-    @GetMapping("/event/typeevent/{id}")
-    public ResponseEntity<List<UserSсhedule>> findByFacultyId(@PathVariable Long id) {
+    @GetMapping("/event/organizer")
+    public ResponseEntity<List<Event>> findByUserLogin(@RequestBody String login) {
         //groupUniversity findFaculty = facultyService.readByCategoryId(id);
-        return mappingResponseListFaculty(groupUniversityService.getByRoleId(id));
+        return mappingResponseListFaculty(service.getByUserLogin(login));
     }
+//    @GetMapping("/event/organizer")
+//    public ResponseEntity<?> findByUserLogin(@RequestBody String login) {
+//        //groupUniversity findFaculty = facultyService.readByCategoryId(id);
+//        return new ResponseEntity<>(login, HttpStatus.OK);
+//    }
     @PutMapping("/event")
-    public ResponseEntity<UserSсhedule> update(
-                                          @RequestBody UserSсhedule faculty) {
-        return mappingResponseFaculty(groupUniversityService.update(faculty));
+    public ResponseEntity<Event> update(
+                                          @RequestBody Event faculty) {
+        return mappingResponseFaculty(service.update(faculty));
     }
-    private ResponseEntity<UserSсhedule> mappingResponseFaculty(UserSсhedule faculty) {
+    private ResponseEntity<Event> mappingResponseFaculty(Event faculty) {
         if (faculty ==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(faculty, HttpStatus.OK);
     }
 
-    private ResponseEntity<List<UserSсhedule>> mappingResponseListFaculty(List<UserSсhedule> userSсhedules) {
+    private ResponseEntity<List<Event>> mappingResponseListFaculty(List<Event> userSсhedules) {
         if (userSсhedules.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

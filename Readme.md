@@ -35,67 +35,103 @@ docker compose up
 ## Приложение определяет следующие API.
 
 
-CRUD APIs для Факультетов
+[//]: # (CRUD APIs для Факультетов)
+API для Факультетов
 
-    GET    /webshedule/faculties
-    POST   /webshedule/faculty
-    GET    /webshedule/faculty/{id}
-    PUT    /webshedule/faculty/{id}
-    DELETE /webshedule/faculty/{id}
+    GET    /webshedule/faculties  - возвращает  список Факультетов
 
-CRUD APIs для Категории События
+[//]: # (    POST   /webshedule/faculty)
+
+[//]: # (    GET    /webshedule/faculty/{id})
+
+[//]: # (    PUT    /webshedule/faculty/{id})
+
+[//]: # (    DELETE /webshedule/faculty/{id})
+
+[//]: # (CRUD APIs для Категорий Событий)
+API для Категорий Событий
 
     GET    /webshedule/categoryies
-    POST   /webshedule/category
-    GET    /webshedule/category/{id}
-    PUT    /webshedule/category/{id}
-    DELETE /webshedule/category/{id}
 
-CRUD APIs для Тип События
+[//]: # (    POST   /webshedule/category)
+
+[//]: # (    GET    /webshedule/category/{id})
+
+[//]: # (    PUT    /webshedule/category/{id})
+
+[//]: # (    DELETE /webshedule/category/{id})
+
+[//]: # (CRUD APIs для Тип События)
+API для Тип События
 
     GET    /webshedule/typeevents
-    POST   /webshedule/typeevent
-    GET    /webshedule/typeevent/{id}
-    PUT    /webshedule/typeevent/{id}
-    DELETE /webshedule/typeevent/{id}
 
-CRUD APIs для Роль Пользователя
+[//]: # (    POST   /webshedule/typeevent)
 
-    GET    /webshedule/roles
-    POST   /webshedule/role
-    GET    /webshedule/role/{id}
-    PUT    /webshedule/role/{id}
-    DELETE /webshedule/role/{id}
+[//]: # (    GET    /webshedule/typeevent/{id})
 
-CRUD APIs для Группа университета
+[//]: # (    PUT    /webshedule/typeevent/{id})
 
-    GET    /webshedule/groups
-    GET    /webshedule/groups/faculty/{id}
-    POST   /webshedule/group
-    GET    /webshedule/group/{id}
-    PUT    /webshedule/group/{id}
-    DELETE /webshedule/group/{id}
+[//]: # (    DELETE /webshedule/typeevent/{id})
 
-CRUD APIs для Класс События
+[//]: # (CRUD APIs для Роль Пользователя)
 
-    GET    /webshedule/classesevent
-    POST   /webshedule/classevent
-    GET    /webshedule/classevent/{id}
-    PUT    /webshedule/classevent/{id}
-    DELETE /webshedule/classevent/{id}
+[//]: # ()
+[//]: # (    GET    /webshedule/roles)
 
-CRUD APIs для Пользователя
+[//]: # (    POST   /webshedule/role)
 
-    GET    /webshedule/users
-    GET    /webshedule/users/role/{id}
-    POST   /webshedule/user
-    GET    /webshedule/user/{id}
-    PUT    /webshedule/user/{id}
-    DELETE /webshedule/user/{id}
-CRUD APIs для Мероприятий
+[//]: # (    GET    /webshedule/role/{id})
 
-    GET    /webshedule/events
+[//]: # (    PUT    /webshedule/role/{id})
+
+[//]: # (    DELETE /webshedule/role/{id})
+
+[//]: # (CRUD APIs для Групп университета)
+API для Групп университета
+
+    GET    /webshedule/groups  - возвращает  список Групп университета
+    GET    /webshedule/groups/faculty/{id} - возвращает  список Групп университета
+
+[//]: # (    POST   /webshedule/group)
+
+[//]: # (    GET    /webshedule/group/{id})
+
+[//]: # (    PUT    /webshedule/group/{id})
+
+[//]: # (    DELETE /webshedule/group/{id})
+
+[//]: # (CRUD APIs для Классов События)
+API для Классов События
+
+    GET    /webshedule/classesevent - возвращает список
+
+[//]: # (    POST   /webshedule/classevent)
+
+[//]: # (    GET    /webshedule/classevent/{id})
+
+[//]: # (    PUT    /webshedule/classevent/{id})
+
+[//]: # (    DELETE /webshedule/classevent/{id})
+
+API для Пользователей
+
+    GET    /webshedule/users - возвращает  список Пользователей
+
+[//]: # (    GET    /webshedule/users/role/{id})
+
+[//]: # (    POST   /webshedule/user)
+
+[//]: # (    GET    /webshedule/user/{id})
+
+[//]: # (    PUT    /webshedule/user/{id})
+
+[//]: # (    DELETE /webshedule/user/{id})
+CRUD API для Мероприятий
+
+    GET    /webshedule/events - возвращает список Мероприятий
     POST   /webshedule/event
     GET    /webshedule/event/{id}
     PUT    /webshedule/event/{id}
     DELETE /webshedule/event/{id}
+    GET    /webshedule/events/organizer - возвращает список Мероприятий определенного организатора

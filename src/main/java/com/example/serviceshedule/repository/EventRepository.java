@@ -34,7 +34,15 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             value = "SELECT * FROM event where event.user_sсhedule_user_schedule_id = ?1",
             nativeQuery = true
     )
-    List<Event> findByUserSсhedule(Long user_sсhedule_user_schedule_id);
+    List<Event> findByUserSсhedule(Long id);
+    @Query(
+            value = "SELECT * FROM event join user_shedule on event.user_sсhedule_user_schedule_id = user_shedule.user_schedule_id  \n" +
+                    "where login like %?1%",
+            nativeQuery = true
+    )
+
+    List<Event> getByUserLogin(String login);
+
 }
 //public interface EventRepository  {
 //
