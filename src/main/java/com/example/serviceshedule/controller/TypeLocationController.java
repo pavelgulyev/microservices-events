@@ -12,25 +12,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/webshedule")
-public class TypeEventController {
+public class TypeLocationController {
     @Autowired
     private TypeEventService typeEventService;
-    @PostMapping("/typeevent")
+    @PostMapping("/typelocation")
     public ResponseEntity<TypeEvent> create(@RequestBody TypeEvent dto) {
         return mappingResponseFaculty(typeEventService.createTypeEvent(dto));
     }
-    @GetMapping("/typeevents")
+    @GetMapping("/typelocations")
     public ResponseEntity<List<TypeEvent>> readAll() {
         return mappingResponseListFaculty(typeEventService.readAll());
     }
-    @GetMapping("/typeevent/{id}")
+    @GetMapping("/typelocation/{id}")
     public ResponseEntity<TypeEvent> fingById(@PathVariable Long id) {
         TypeEvent findFaculty = typeEventService.getFacultyById(id);
 
 
         return mappingResponseFaculty(findFaculty);
     }
-    @PutMapping("/typeevent/{id}")
+    @PutMapping("/typelocation/{id}")
     public ResponseEntity<TypeEvent> update(@PathVariable Long id,
                                           @RequestBody TypeEvent faculty) {
         return mappingResponseFaculty(typeEventService.update(faculty));

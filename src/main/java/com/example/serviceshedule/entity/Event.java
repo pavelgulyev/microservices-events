@@ -67,7 +67,7 @@ public class Event {
     @Column(name = "dateEndEvent")
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-//    @JsonFormat(pattern = "2019-10-21T13:00+02:00")
+//    @JsonFormat(pattern = "20191021:00+02:00")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateEndEvent;
