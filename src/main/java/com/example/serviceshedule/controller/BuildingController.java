@@ -27,7 +27,7 @@ public class BuildingController {
         Building findFaculty = service.getBuildingById(id);
         return mappingResponseBuilding(findFaculty);
     }
-    @PutMapping("/building")
+    @PutMapping("/building/{id}")
     public ResponseEntity<Building> update(@PathVariable Long id,
                                           @RequestBody Building faculty) {
         return mappingResponseBuilding(service.update(faculty));

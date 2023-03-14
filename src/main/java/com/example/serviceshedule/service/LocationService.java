@@ -25,11 +25,9 @@ public class LocationService {
     @Modifying
     @Transactional
     public Location createFromDTO(LocationDto dto) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Location location =new Location();
         location.setNamelocation(dto.getNamelocation());
-        location.setType_location(typeLocationRepository.getReferenceById(dto.getType_location()));
+        location.setType_location(typeLocationRepository.getById(dto.getType_location()));
         location.setBuilding(buildingRepository.getById(dto.getBuilding()));
         return  locationRepository.save(location);
     }
@@ -44,9 +42,12 @@ public class LocationService {
     public Location getEventById(Long id) {
         return locationRepository.findById(id).orElse(null);
     }
-//    public List<Location> getByUserLogin(String login) {
-//        return locationRepository.(login);
-//    }
+    public List<Location> findByLicationBuilding(String Building) {
+        return locationRepository.findByBuilding(Long.parseLong(Building));
+    }
+    public List<Location> findByLicationType(String Building) {
+        return locationRepository.findByType(Long.parseLong(Building));
+    }
     public void delete(Long id) {
         locationRepository.deleteById(id);
     }

@@ -29,4 +29,6 @@ public class EventDto implements Serializable {
     private Long faculty;
     @JsonProperty("category_id")
     private Long category;
+    @JsonProperty("location_id")
+    private Long location;
 }

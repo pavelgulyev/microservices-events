@@ -2,6 +2,7 @@ package com.example.serviceshedule.controller;
 
 
 import com.example.serviceshedule.dto.EventDto;
+import com.example.serviceshedule.dto.SearchDto;
 import com.example.serviceshedule.entity.Event;
 import com.example.serviceshedule.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class EventController {
     public ResponseEntity<List<Event>> readAll() {
         return mappingResponseListFaculty(service.readAll());
     }
-    @GetMapping("/evendto")
+    @GetMapping("/eventdto")
     public ResponseEntity<EventDto> readGroupUniversityDto() {
         EventDto dto = new EventDto();
         return new ResponseEntity<>(dto, HttpStatus.OK);
@@ -40,16 +41,29 @@ public class EventController {
         Event findFaculty = service.getEventById(id);
         return mappingResponseFaculty(findFaculty);
     }
-    @GetMapping("/event/organizer")
-    public ResponseEntity<List<Event>> findByUserLogin(@RequestBody String login) {
-        //groupUniversity findFaculty = facultyService.readByCategoryId(id);
-        return mappingResponseListFaculty(service.getByUserLogin(login));
+    @GetMapping("/event/organizer/login")
+    public ResponseEntity<List<Event>> findByEventLogin(@RequestBody SearchDto searchDto) {
+        return mappingResponseListFaculty(service.getByUserLogin(searchDto.getValue1()));
     }
-//    @GetMapping("/event/organizer")
-//    public ResponseEntity<?> findByUserLogin(@RequestBody String login) {
+    @GetMapping("/event/date/range")
+    public ResponseEntity<List<Event>> findAllEventWithDateRange(@RequestBody SearchDto searchDto) {
+        return mappingResponseListFaculty(service.findAllEventWithDateRange(searchDto.getValue1(),
+                searchDto.getValue2()));
+    }
+    @GetMapping("/event/date/day")
+    public ResponseEntity<List<Event>> findAllEventWithDateDayStart(@RequestBody SearchDto searchDto) {
+        return mappingResponseListFaculty(service.findAllEventWithDateDayStart(searchDto.getValue1()));
+    }
+    @GetMapping("/event/location")
+    public ResponseEntity<List<Event>> getByLocation(@RequestBody SearchDto searchDto) {
+        return mappingResponseListFaculty(service.findAllEventWithDateDayStart(searchDto.getValue1()));
+    }
+//    @GetMapping("/event/organizer/full_name")
+//    public ResponseEntity<List<Event>> findByUserfull_name(@RequestBody SearchDto searchDto) {
 //        //groupUniversity findFaculty = facultyService.readByCategoryId(id);
-//        return new ResponseEntity<>(login, HttpStatus.OK);
+//        return mappingResponseListFaculty(service.getByUserLogin(searchDto.getValue1()));
 //    }
+
     @PutMapping("/event")
     public ResponseEntity<Event> update(
                                           @RequestBody Event faculty) {

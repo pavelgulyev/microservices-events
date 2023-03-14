@@ -35,8 +35,11 @@ public class Event {
     private String nameEvent;
     @Column(name = "descriptionEvent", columnDefinition = "TEXT")
     private String descriptionEvent;
-    @Column(name = "locationEvent")
-    private String LocationEvent;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Location location;
     @ManyToOne
     @JoinColumn(name = "class_event_class_event_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

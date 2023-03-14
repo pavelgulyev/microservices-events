@@ -2,6 +2,7 @@ package com.example.serviceshedule.controller;
 
 
 import com.example.serviceshedule.dto.LocationDto;
+import com.example.serviceshedule.dto.SearchDto;
 import com.example.serviceshedule.entity.Location;
 import com.example.serviceshedule.service.EventService;
 import com.example.serviceshedule.service.LocationService;
@@ -41,16 +42,14 @@ public class LocationController {
         Location findFaculty = service.getEventById(id);
         return mappingResponseFaculty(findFaculty);
     }
-//    @GetMapping("/location/organizer")
-//    public ResponseEntity<List<Location>> findByUserLogin(@RequestBody String login) {
-//        //groupUniversity findFaculty = facultyService.readByCategoryId(id);
-//        return mappingResponseListLocations(service.(login));
-//    }
-//    @GetMapping("/event/organizer")
-//    public ResponseEntity<?> findByUserLogin(@RequestBody String login) {
-//        //groupUniversity findFaculty = facultyService.readByCategoryId(id);
-//        return new ResponseEntity<>(login, HttpStatus.OK);
-//    }
+    @GetMapping("/location/building")
+    public ResponseEntity<List<Location>> findByLicationBuilding(@RequestBody SearchDto searchDto) {
+        return mappingResponseListLocations(service.findByLicationBuilding(searchDto.getValue1()));
+    }
+    @GetMapping("/location/type")
+    public ResponseEntity<List<Location>> findByLicationType(@RequestBody SearchDto searchDto) {
+        return mappingResponseListLocations(service.findByLicationType(searchDto.getValue1()));
+    }
     @PutMapping("/location")
     public ResponseEntity<Location> update(
                                           @RequestBody Location faculty) {

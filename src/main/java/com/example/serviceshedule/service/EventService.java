@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.List;
 
 @Service
 public class EventService {
+
+    @Autowired
+    private LocationRepository locationRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -30,7 +35,6 @@ public class EventService {
     private EventRepository eventRepository;
     @Transactional
     public Event createFromDTO(EventDto dto) {
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Event event =new Event();
         event.setNameEvent(dto.getNameEvent());
@@ -43,28 +47,11 @@ public class EventService {
         event.setClassEvent(classEventRepository.getById(dto.getClassEventid()));
         event.setTypeEvent(typeEventRepository.getById(dto.getTypeEventid()));
         event.setUserSсhedule(userRepository.getById(dto.getUserSсhedulid()));
+        event.setLocation(locationRepository.getById(dto.getLocation()));
         return  eventRepository.save(event);
     }
 
-//    @Transactional
-//    public Event create(UserScheduleDto dto) {
-//        return eventRepository.save(groupPostDtoToUserSchedule(dto));
-//    }
-//    public Event groupPostDtoToUserSchedule(UserScheduleDto dto) {
-//        Event userSсhedule =new Event();
-//        userSсhedule.setFirstNameUserSchedule(dto.getFirstNameUserSchedule());
-//        userSсhedule.setLastNameUserSchedule(dto.getLastNameUserSchedule());
-//        userSсhedule.setLogin(dto.getLogin());
-//        userSсhedule.setPasswordHash(dto.getPasswordHash());
-//        userSсhedule.setRole(userRepository.getById(dto.getRoleid()));
-//        return userSсhedule;
-//    }
-//    public groupUniversity createGroupUniversity(groupUniversity dto) {
-//        groupUniversity group =new groupUniversity();
-//        group.setNamegroupUniversity(dto.getNamegroupUniversity());
-//        group.setFaculty(dto.getFaculty());
-//        return groupUniversityRepository.save(group);
-//    }
+
 
     public List<Event> readAll() {
         return eventRepository.findAll();
@@ -79,6 +66,31 @@ public class EventService {
     }
     public List<Event> getByUserLogin(String login) {
         return eventRepository.getByUserLogin(login);
+    }
+    public List<Event> findAllEventWithDateRange(String startdate,String enddate) {
+        DateTimeFormatter DATE_FORMAT =
+                new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ [HH][:mm][:ss][.SSS]]")
+                        .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                        .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                        .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                        .toFormatter();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime start =  LocalDateTime.parse(startdate, DATE_FORMAT);
+        LocalDateTime end = LocalDateTime.parse(enddate, DATE_FORMAT);
+        return eventRepository.findAllEventWithDateRange(start,end);
+    }
+    public List<Event> findAllEventWithDateDayStart(String startdate) {
+        DateTimeFormatter DATE_FORMAT =
+                new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ [HH][:mm][:ss][.SSS]]")
+                        .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                        .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                        .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                        .toFormatter();
+        LocalDateTime start =  LocalDateTime.parse(startdate, DATE_FORMAT);
+        return eventRepository.findAllEventWithDateDayStart(start);
+    }
+    public List<Event> getByLocation(String location) {
+        return eventRepository.getByLocation(location);
     }
     public void delete(Long id) {
         eventRepository.deleteById(id);

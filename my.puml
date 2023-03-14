@@ -1,0 +1,373 @@
+@startuml
+interface com.example.serviceshedule.repository.TypeLocationRepository {
+}
+class com.example.serviceshedule.service.TypeLocationService {
+- TypeLocationRepository typeLocationRepository
++ TypeLocation create(TypeLocation)
++ List<TypeLocation> readAll()
++ TypeLocation update(TypeLocation)
++ TypeLocation getEventById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.entity.UserSсhedule {
+- Long userScheduleId
+- String firstNameUserSchedule
+- String lastNameUserSchedule
+- String login
+- String passwordHash
+- Role role
+}
+class com.example.serviceshedule.service.EventService {
+- UserRepository userRepository
+- ClassEventRepository classEventRepository
+- TypeEventRepository typeEventRepository
+- CategoryRepository categoryRepository
+- GroupUniversityRepository groupUniversityRepository
+- FacultyRepository facultyRepository
+- EventRepository eventRepository
++ Event createFromDTO(EventDto)
++ List<Event> readAll()
++ Event update(Event)
++ Event getEventById(Long)
++ List<Event> getByUserLogin(String)
++ void delete(Long)
+}
+class com.example.serviceshedule.entity.Building {
+- Long buildingId
+- String namebuilding
+}
+class com.example.serviceshedule.controller.ClassEventController {
+- ClassEventService classEventServiceService
++ ResponseEntity<ClassEvent> create(ClassEvent)
++ ResponseEntity<List<ClassEvent>> readAll()
++ ResponseEntity<ClassEvent> fingById(Long)
++ ResponseEntity<ClassEvent> update(Long,ClassEvent)
+- ResponseEntity<ClassEvent> mappingResponseCategory(ClassEvent)
++ HttpStatus delete(Long)
+- ResponseEntity<List<ClassEvent>> mappingResponseListCategory(List<ClassEvent>)
+}
+interface com.example.serviceshedule.repository.LocationRepository {
+~ List<Location> findByType(Long)
+~ List<Location> findByBuilding(Long)
+}
+class com.example.serviceshedule.entity.Category {
+- Long CategoryId
+- String nameCategory
+}
+class com.example.serviceshedule.controller.RoleController {
+- RoleService service
++ ResponseEntity<Role> create(Role)
++ ResponseEntity<List<Role>> readAll()
++ ResponseEntity<Role> fingById(Long)
++ ResponseEntity<Role> update(Long,Role)
+- ResponseEntity<Role> mappingResponseCategory(Role)
++ HttpStatus delete(Long)
+- ResponseEntity<List<Role>> mappingResponseListCategory(List<Role>)
+}
+class com.example.serviceshedule.controller.LocationController {
+- LocationService service
++ ResponseEntity<Location> create(LocationDto)
++ HttpStatus delete(Long)
++ ResponseEntity<List<Location>> readAll()
++ ResponseEntity<LocationDto> readGroupUniversityDto()
++ ResponseEntity<Location> findById(Long)
++ ResponseEntity<Location> update(Location)
+- ResponseEntity<Location> mappingResponseFaculty(Location)
+- ResponseEntity<List<Location>> mappingResponseListLocations(List<Location>)
+}
+interface com.example.serviceshedule.repository.TypeEventRepository {
+}
+class com.example.serviceshedule.service.BuildingService {
+- BuildingRepository repository
++ Building createBuilding(Building)
++ List<Building> readAll()
++ Building update(Building)
++ Building getBuildingById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.controller.EventController {
+- EventService service
++ ResponseEntity<Event> create(EventDto)
++ HttpStatus delete(Long)
++ ResponseEntity<List<Event>> readAll()
++ ResponseEntity<EventDto> readGroupUniversityDto()
++ ResponseEntity<Event> findById(Long)
++ ResponseEntity<List<Event>> findByUserLogin(String)
++ ResponseEntity<Event> update(Event)
+- ResponseEntity<Event> mappingResponseFaculty(Event)
+- ResponseEntity<List<Event>> mappingResponseListFaculty(List<Event>)
+}
+interface com.example.serviceshedule.repository.BuildingRepository {
+}
+class com.example.serviceshedule.controller.TypeLocationController {
+- TypeEventService typeEventService
++ ResponseEntity<TypeEvent> create(TypeEvent)
++ ResponseEntity<List<TypeEvent>> readAll()
++ ResponseEntity<TypeEvent> fingById(Long)
++ ResponseEntity<TypeEvent> update(Long,TypeEvent)
+- ResponseEntity<TypeEvent> mappingResponseFaculty(TypeEvent)
+- ResponseEntity<List<TypeEvent>> mappingResponseListFaculty(List<TypeEvent>)
+}
+class com.example.serviceshedule.entity.TypeEvent {
+- Long type_eventid
+- String nametype_event
+}
+interface com.example.serviceshedule.repository.UserRepository {
+~ List<UserSсhedule> findByRole(Long)
+}
+class com.example.serviceshedule.controller.BuildingController {
+- BuildingService service
++ ResponseEntity<Building> create(Building)
++ ResponseEntity<List<Building>> readAll()
++ ResponseEntity<Building> fingById(Long)
++ ResponseEntity<Building> update(Long,Building)
+- ResponseEntity<Building> mappingResponseBuilding(Building)
++ HttpStatus delete(Long)
+- ResponseEntity<List<Building>> mappingResponseListBuilding(List<Building>)
+}
+class com.example.serviceshedule.entity.DateEvent {
+}
+class com.example.serviceshedule.dto.FacultyDto {
+- String nameFaculty
+}
+class com.example.serviceshedule.controller.TypeEventController {
+- TypeEventService typeEventService
++ ResponseEntity<TypeEvent> create(TypeEvent)
++ ResponseEntity<List<TypeEvent>> readAll()
++ ResponseEntity<TypeEvent> fingById(Long)
++ ResponseEntity<TypeEvent> update(Long,TypeEvent)
+- ResponseEntity<TypeEvent> mappingResponseFaculty(TypeEvent)
+- ResponseEntity<List<TypeEvent>> mappingResponseListFaculty(List<TypeEvent>)
+}
+class com.example.serviceshedule.dto.SearchDto {
+- String value1
+- String value2
+- String value3
+}
+class com.example.serviceshedule.controller.UserScheduleController {
+- UserScheduleService groupUniversityService
++ ResponseEntity<UserSсhedule> create(UserScheduleDto)
++ HttpStatus delete(Long)
++ ResponseEntity<List<UserSсhedule>> readAll()
++ ResponseEntity<UserScheduleDto> readGroupUniversityDto()
++ ResponseEntity<UserSсhedule> findById(Long)
++ ResponseEntity<List<UserSсhedule>> findByFacultyId(Long)
++ ResponseEntity<UserSсhedule> update(UserSсhedule)
+- ResponseEntity<UserSсhedule> mappingResponseFaculty(UserSсhedule)
+- ResponseEntity<List<UserSсhedule>> mappingResponseListFaculty(List<UserSсhedule>)
+}
+class com.example.serviceshedule.dto.GroupUniversityDto {
+- String nameGroupUniversity
+- Long facultyid
+}
+class com.example.serviceshedule.entity.Location {
+- Long locationId
+- String namelocation
+- TypeLocation type_location
+- Building building
+}
+class com.example.serviceshedule.controller.FacultyController {
+- FacultyService facultyService
++ ResponseEntity<Faculty> create(Faculty)
++ ResponseEntity<List<Faculty>> readAll()
++ ResponseEntity<Faculty> fingById(Long)
++ ResponseEntity<Faculty> update(Long,Faculty)
+- ResponseEntity<Faculty> mappingResponseFaculty(Faculty)
++ HttpStatus delete(Long)
+- ResponseEntity<List<Faculty>> mappingResponseListFaculty(List<Faculty>)
+}
+class com.example.serviceshedule.controller.GroupUniversityController {
+- GroupUniversityService groupUniversityService
++ ResponseEntity<groupUniversity> create(GroupUniversityDto)
++ HttpStatus delete(Long)
++ ResponseEntity<List<groupUniversity>> readAll()
++ ResponseEntity<GroupUniversityDto> readGroupUniversityDto()
++ ResponseEntity<groupUniversity> findById(Long)
++ ResponseEntity<List<groupUniversity>> findByFacultyId(Long)
++ ResponseEntity<groupUniversity> update(groupUniversity)
+- ResponseEntity<groupUniversity> mappingResponseFaculty(groupUniversity)
+- ResponseEntity<List<groupUniversity>> mappingResponseListFaculty(List<groupUniversity>)
+}
+class com.example.serviceshedule.entity.Event {
+- Long eventId
+- String nameEvent
+- String descriptionEvent
+- String LocationEvent
+- ClassEvent classEvent
+- TypeEvent typeEvent
+- Category category
+- UserSсhedule userSсhedule
+- groupUniversity groupUniversity
+- Faculty faculty
+- LocalDateTime dateStartEvent
+- LocalDateTime dateEndEvent
+}
+class com.example.serviceshedule.entity.Role {
+- Long RoleId
+- String nameRole
+}
+class com.example.serviceshedule.service.FacultyService {
+- FacultyRepository repository
++ Faculty create(FacultyDto)
++ Faculty createFaculty(Faculty)
++ List<Faculty> readAll()
++ Faculty update(Faculty)
++ Faculty getFacultyById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.service.CategoryService {
+- CategoryRepository repository
++ Category createCategory(Category)
++ List<Category> readAll()
++ Category update(Category)
++ Category getFacultyById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.entity.ClassEvent {
+- Long classEventId
+- String nameClassEvent
+}
+class com.example.serviceshedule.service.ClassEventService {
+- ClassEventRepository repository
++ ClassEvent createFaculty(ClassEvent)
++ List<ClassEvent> readAll()
++ ClassEvent update(ClassEvent)
++ ClassEvent getFacultyById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.dto.LocationDto {
+- String namelocation
+- Long type_location
+- Long building
+}
+class com.example.serviceshedule.controller.CategoryController {
+- CategoryService categoryService
++ ResponseEntity<Category> create(Category)
++ ResponseEntity<List<Category>> readAll()
++ ResponseEntity<Category> fingById(Long)
++ ResponseEntity<Category> update(Long,Category)
+- ResponseEntity<Category> mappingResponseCategory(Category)
++ HttpStatus delete(Long)
+- ResponseEntity<List<Category>> mappingResponseListCategory(List<Category>)
+}
+class com.example.serviceshedule.service.TypeEventService {
+- TypeEventRepository repository
++ TypeEvent createTypeEvent(TypeEvent)
++ List<TypeEvent> readAll()
++ TypeEvent update(TypeEvent)
++ TypeEvent getFacultyById(Long)
++ void delete(Long)
+}
+interface com.example.serviceshedule.repository.RoleRepository {
+}
+interface com.example.serviceshedule.repository.EventRepository {
+~ List<Event> findByTypeEvent(Long)
+~ List<Event> findByClassEvent(Long)
+~ List<Event> findByUserSсhedule(Long)
+~ List<Event> getByUserLogin(String)
+}
+class com.example.serviceshedule.dto.UserScheduleDto {
+- String firstNameUserSchedule
+- String lastNameUserSchedule
+- Long roleid
+- String login
+- String passwordHash
+}
+class com.example.serviceshedule.ServiceSheduleApplication {
++ {static} void main(String[])
+}
+interface com.example.serviceshedule.repository.ClassEventRepository {
+}
+class com.example.serviceshedule.service.UserScheduleService {
+- RoleRepository facultyRepository
+- UserRepository groupUniversityRepository
++ UserSсhedule createFromDTO(UserScheduleDto)
++ UserSсhedule create(UserScheduleDto)
++ UserSсhedule groupPostDtoToUserSchedule(UserScheduleDto)
++ List<UserSсhedule> readAll()
++ UserSсhedule update(UserSсhedule)
++ UserSсhedule getUserScheduleById(Long)
++ List<UserSсhedule> getByRoleId(Long)
++ void delete(Long)
+}
+interface com.example.serviceshedule.repository.CategoryRepository {
+}
+class com.example.serviceshedule.entity.Faculty {
+- Long facultyId
+- String nameFaculty
+}
+interface com.example.serviceshedule.repository.GroupUniversityRepository {
+~ List<groupUniversity> findByFaculty(Long)
+}
+class com.example.serviceshedule.service.GroupUniversityService {
+- FacultyRepository facultyRepository
+- GroupUniversityRepository groupUniversityRepository
++ groupUniversity create(GroupUniversityDto)
++ groupUniversity groupPostDtoToGroupUniversity(GroupUniversityDto)
++ List<groupUniversity> readAll()
++ groupUniversity update(groupUniversity)
++ groupUniversity getGroupUniversityById(Long)
++ List<groupUniversity> readByCategoryId(Long)
++ void delete(Long)
+}
+interface com.example.serviceshedule.repository.FacultyRepository {
+}
+class com.example.serviceshedule.dto.EventDto {
+- String nameEvent
+- String descriptionEvent
+- String dateStartEvent
+- String dateEndEvent
+- Long classEventid
+- Long typeEventid
+- Long userSсhedulid
+- Long groupUniversity
+- Long faculty
+- Long category
+}
+class com.example.serviceshedule.service.DateEventService {
+}
+class com.example.serviceshedule.service.RoleService {
+- RoleRepository repository
++ Role createRole(Role)
++ List<Role> readAll()
++ Role update(Role)
++ Role getRoleById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.service.LocationService {
+- TypeLocationRepository typeLocationRepository
+- BuildingRepository buildingRepository
+- LocationRepository locationRepository
++ Location createFromDTO(LocationDto)
++ List<Location> readAll()
++ Location update(Location)
++ Location getEventById(Long)
++ void delete(Long)
+}
+class com.example.serviceshedule.entity.groupUniversity {
+- Long groupUniversityId
+- String namegroupUniversity
+- Faculty faculty
+}
+class com.example.serviceshedule.entity.TypeLocation {
+- Long locationId
+- String nametype_location
+}
+
+
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.TypeLocationRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.LocationRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.TypeEventRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.BuildingRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.UserRepository
+java.io.Serializable <|.. com.example.serviceshedule.dto.FacultyDto
+java.io.Serializable <|.. com.example.serviceshedule.dto.GroupUniversityDto
+java.io.Serializable <|.. com.example.serviceshedule.dto.LocationDto
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.RoleRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.EventRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.ClassEventRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.CategoryRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.GroupUniversityRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.example.serviceshedule.repository.FacultyRepository
+java.io.Serializable <|.. com.example.serviceshedule.dto.EventDto
+@enduml
