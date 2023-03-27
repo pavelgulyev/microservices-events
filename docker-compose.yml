@@ -1,19 +1,29 @@
-version: '2.1'
+version: '3.8'
 
 services:
   #service 1: mysql database image creation
-  db:
-    image: mysql
-    container_name: appdb
+  mysqldb:
+    image: mysql:8.0
+    restart: on-failure
     environment:
       - MYSQL_ROOT_PASSWORD=spring
       - MYSQL_DATABASE=shedule
     ports:
       - "3306:3306"
-#    restart: always
     networks:
       - lotus
-    restart: on-failure
+#  db:
+#    image: mysql
+#    container_name: appdb
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=spring
+#      - MYSQL_DATABASE=shedule
+#    ports:
+#      - "3306:3306"
+##    restart: always
+#    networks:
+#      - lotus
+#    restart: on-failure
   web-app:
       container_name: springboot-web
       image: springboot-web
@@ -27,7 +37,7 @@ services:
       networks:
         - lotus
       environment:
-        - APP_MYSQL_DATASOURCE_URL=jdbc:db://appdb:3306/shedule
+        - APP_MYSQL_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/shedule
         - APP_MYSQL_USERNAME=root
         - APP_MYSQL_PASSWORD=spring
       restart: on-failure

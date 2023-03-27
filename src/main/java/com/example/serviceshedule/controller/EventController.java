@@ -56,7 +56,7 @@ public class EventController {
     }
     @GetMapping("/event/location")
     public ResponseEntity<List<Event>> getByLocation(@RequestBody SearchDto searchDto) {
-        return mappingResponseListFaculty(service.findAllEventWithDateDayStart(searchDto.getValue1()));
+        return mappingResponseListFaculty(service.getByLocation(searchDto.getValue1()));
     }
 //    @GetMapping("/event/organizer/full_name")
 //    public ResponseEntity<List<Event>> findByUserfull_name(@RequestBody SearchDto searchDto) {
