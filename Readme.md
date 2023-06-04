@@ -42,7 +42,7 @@ API для Факультетов
 
 [//]: # (    POST   /webshedule/faculty)
 
-[//]: # (    GET    /webshedule/faculty/{id})
+# (    GET    /webshedule/faculty/{id})
 
 [//]: # (    PUT    /webshedule/faculty/{id})
 
